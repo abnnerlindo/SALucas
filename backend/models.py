@@ -1,5 +1,18 @@
 class Agendamento:
-    def __init__(self, cliente, telefone, servico, preco, barbeiro, data, horario, status):
+
+    def __init__(
+        self,
+        cliente,
+        telefone,
+        servico,
+        preco,
+        barbeiro,
+        data,
+        horario,
+        status='Pendente',
+        id=None,
+    ):
+        self.id = id
         self.cliente = cliente
         self.telefone = telefone
         self.servico = servico
@@ -8,25 +21,31 @@ class Agendamento:
         self.data = data
         self.horario = horario
         self.status = status
-    
-    def exibir(self):
-        print(f"Cliente: {self.cliente} | Telefone: {self.telefone} | Serviço: {self.servico} | Preço: R${self.preco:.2f} | Barbeiro: {self.barbeiro} | Data: {self.data} | Horário: {self.horario} | Status: {self.status}")
 
     def converte_tupla(self):
-        return (self.cliente, self.telefone, self.servico, self.preco, self.barbeiro, self.data, self.horario, self.status)
-
-    @staticmethod   #metodo que pertence a classe mas não depende de nenhum objeto
-    def reverte_tupla(tupla):
-        agendamento = Agendamento(
-            cliente = tupla[1],
-            telefone = tupla[2],
-            servico = tupla[3],
-            preco = float(tupla[4]),
-            barbeiro = tupla[5],
-            data = tupla[6],
-            horario = tupla[7],
-            status = tupla[8]
+        # Retorna apenas os dados para gravação (sem o ID auto-increment)
+        return (
+            self.cliente,
+            self.telefone,
+            self.servico,
+            self.preco,
+            self.barbeiro,
+            self.data,
+            self.horario,
+            self.status,
         )
-        return agendamento
 
-    
+    @classmethod
+    def reverte_tupla(cls, linha):
+        # Mapeia a linha do banco (id, cliente, telefone, ...) de volta para o objeto
+        return cls(
+            id=linha[0],
+            cliente=linha[1],
+            telefone=linha[2],
+            servico=linha[3],
+            preco=linha[4],
+            barbeiro=linha[5],
+            data=linha[6],
+            horario=linha[7],
+            status=linha[8],
+        )

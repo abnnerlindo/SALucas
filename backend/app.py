@@ -1,7 +1,11 @@
-from flask import Flask, render_template
-
-from agendamentos import buscar_agendamento, listarPorStatus, listar_agendamentos
-
+from flask import Flask, render_template, request, redirect, url_for
+from agendamentos import (
+    buscar_agendamento,
+    cadastrar_agendamento,
+    listarPorStatus,
+    listar_agendamentos,
+)
+from models import Agendamento
 
 app = Flask(__name__)
 
