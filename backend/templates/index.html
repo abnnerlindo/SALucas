@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Barbearia</title>
+</head>
+<body>
+
+    <h1>Barbearia</h1>
+
+    <nav>
+        <a href="{{ url_for('index') }}">Início</a>
+        <a href="{{ url_for('agendamentos') }}">Agendamentos</a>
+        <a href="{{ url_for('novo_agendamento') }}">Cadastrar Novo Agendamento</a>
+    </nav>
+
+    <h2>Total de agendamentos: {{ agendamentos|length }}</h2>
+
+</body>
+</html>

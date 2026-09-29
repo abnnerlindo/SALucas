@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Agendamento</title>
+</head>
+<body>
+    <h1>Cadastrar Novo Agendamento</h1>
+
+    <form action="/agendamento/novo" method="POST">
+        <div>
+            <label for="cliente">Nome do Cliente:</label><br>
+            <input type="text" id="cliente" name="cliente" required>
+        </div><br>
+
+        <div>
+            <label for="telefone">Telefone:</label><br>
+            <input type="text" id="telefone" name="telefone" required>
+        </div><br>
+
+        <div>
+            <label for="servico">Serviço:</label><br>
+            <input type="text" id="servico" name="servico" placeholder="Ex: Corte e Barba" required>
+        </div><br>
+
+        <div>
+            <label for="preco">Preço (R$):</label><br>
+            <input type="number" id="preco" name="preco" step="0.01" required>
+        </div><br>
+
+        <div>
+            <label for="barbeiro">Barbeiro:</label><br>
+            <input type="text" id="barbeiro" name="barbeiro" required>
+        </div><br>
+
+        <div>
+            <label for="data">Data:</label><br>
+            <input type="date" id="data" name="data" required>
+        </div><br>
+
+        <div>
+            <label for="horario">Horário:</label><br>
+            <input type="time" id="horario" name="horario" required>
+        </div><br>
+
+        <div>
+            <label for="status">Status:</label><br>
+            <select id="status" name="status">
+                <option value="Pendente" selected>Pendente</option>
+                <option value="Confirmado">Confirmado</option>
+                <option value="Concluído">Concluído</option>
+                <option value="Cancelado">Cancelado</option>
+            </select>
+        </div><br>
+
+        <button type="submit">Salvar Agendamento</button>
+        <a href="{{ url_for('agendamentos') }}">Cancelar</a>
+    </form>
+</body>
+</html>

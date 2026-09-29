@@ -25,6 +25,29 @@ def agendamentos_por_status(status):
 		status_atual=status,
 	)
 
+@app.route('/agendamento/novo', methods=['GET', 'POST'])
+def novo_agendamento():
+    if request.method == 'POST':
+        # 1. Captura os dados do formulário HTML (os names do formulário devem bater com estas chaves)
+        novo = Agendamento(
+            cliente=request.form['cliente'],
+            telefone=request.form['telefone'],
+            servico=request.form['servico'],
+            preco=float(request.form['preco']),
+            barbeiro=request.form['barbeiro'],
+            data=request.form['data'],
+            horario=request.form['horario'],
+            status=request.form.get('status', 'Pendente')
+        )
+        
+        # 2. Chama a função que insere no banco de dados
+        cadastrar_agendamento(novo)
+
+        # 3. Redireciona o usuário para a lista de agendamentos
+        return redirect(url_for('agendamentos'))
+
+    # Se a requisição for GET, exibe o formulário de cadastro
+    return render_template('cadastrar.html')
 
 @app.route('/agendamento/<int:id>')
 def detalhe(id):

@@ -2,23 +2,22 @@ import mysql.connector          #importando o mysql
 from banco import conectar
 from models import Agendamento
 
-# def cadastrar_agendamento(agendamento: Agendamento): #cadastrando agendamento
-#
-#    conexao = None
-#    try: 
-#        conexao = conectar()
-#        cursor = conexao.cursor()
-#        cursor.execute(
-#            "INSERT INTO agendamentos (cliente, telefone, servico, preco, barbeiro, data, horario, status) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-#            agendamento.converte_tupla()
-#        )
-#        conexao.commit()
-#        print(f"Agendamento do cliente '{agendamento.cliente}' cadastrado.")
-#    except mysql.connector.Error as erro:
-#        print(f"Erro ao cadastrar: {erro}")
-#    finally:
-#        if conexao and conexao.is_connected():
-#            conexao.close()
+def cadastrar_agendamento(agendamento: Agendamento): #cadastrando agendamento
+  conexao = None
+    try: 
+        conexao = conectar()
+        cursor = conexao.cursor()
+        cursor.execute(
+            "INSERT INTO agendamentos (cliente, telefone, servico, preco, barbeiro, data, horario, status) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+            agendamento.converte_tupla()
+        )
+        conexao.commit()
+        print(f"Agendamento do cliente '{agendamento.cliente}' cadastrado.")
+    except mysql.connector.Error as erro:
+        print(f"Erro ao cadastrar: {erro}")
+    finally:
+        if conexao and conexao.is_connected():
+            conexao.close()
 
 def listar_agendamentos():             # listar agendamentos
 
